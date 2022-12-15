@@ -1,8 +1,20 @@
-import { render, screen } from '@testing-library/react';
+import React from 'react';
+import { render, screen, waitFor, within, waitForElementToBeRemoved } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import mockData from './mockData';
+import BlogPosts from './components/BlogPosts';
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+beforeEach(() => {
+  jest.spyOn(global,'fetch').mockResolvedValue({
+      json:jest.fn().mockResolvedValue(mockData)
+  })
+});
+describe('<App /> tests', () => {
+  it("should show blog(data fatched from api) on the page", async () => {
+      render(<App/>);
+      await waitForElementToBeRemoved(()=> screen.queryByText(/Loading/i));
+      mockData.forEach((d)=> expect(screen.getByText()).toBeInTheDocument());
+      // expect(screen.getByText(/hello/i)).toBeInTheDocument();
+  });
 });
