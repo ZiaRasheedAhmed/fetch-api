@@ -19,15 +19,20 @@ function App() {
         const result = await fetch('https://jsonplaceholder.typicode.com/posts/')
         .then((response) => response.json());
         act(()=>{
-          setData(result);
+          setData(result.slice(0,10));
           setLoading(false);
         })
     }
     CallMyAPI();
-    });
+    },[]);
+
+    function addValue (value){
+
+      setData((prev)=> [...prev,value]);
+    }
   return (
     <>
-      <NewPost />
+      <NewPost addValue={addValue}/>
       {loading ? <p>Loading</p> :<BlogPosts data={data} />}
     </>
   );
