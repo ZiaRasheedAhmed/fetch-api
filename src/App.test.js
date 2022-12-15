@@ -11,10 +11,10 @@ beforeEach(() => {
   })
 });
 describe('<App /> tests', () => {
-  it("should show blog(data fatched from api) on the page", async () => {
+  it("should show blog on the page", async () => {
       render(<App/>);
       await waitForElementToBeRemoved(()=> screen.queryByText(/Loading/i));
-      mockData.forEach((d)=> expect(screen.getByText()).toBeInTheDocument());
+      mockData.forEach((d)=> expect(screen.getByText(d.title)).toBeInTheDocument());
       // expect(screen.getByText(/hello/i)).toBeInTheDocument();
   });
 });
