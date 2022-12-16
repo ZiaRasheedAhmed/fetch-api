@@ -6,7 +6,7 @@ function BlogPosts({data}) {
   console.log(list.length);
 
   return(
-  <div className='listItem'>
+  <div id='listItem'>
     <ul classes={classes.list}>
   {list}
   </ul>

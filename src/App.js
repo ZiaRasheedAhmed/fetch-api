@@ -19,7 +19,7 @@ function App() {
         const result = await fetch('https://jsonplaceholder.typicode.com/posts/')
         .then((response) => response.json());
         act(()=>{
-          setData(result.slice(0,10));
+          setData(result.slice(0,20));
           setLoading(false);
         })
     }
